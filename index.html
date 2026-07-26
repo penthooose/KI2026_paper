@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: system-ui, -apple-system, sans-serif;
-            max-width: 800px;
+            max-width: 850px;
             margin: 40px auto;
             padding: 0 20px;
             line-height: 1.6;
@@ -48,15 +48,17 @@
         }
         .actions {
             margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .btn {
             display: inline-block;
-            padding: 10px 18px;
+            padding: 10px 16px;
             text-decoration: none;
             border-radius: 6px;
             font-weight: bold;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            font-size: 0.9em;
         }
         .btn-pdf {
             background-color: #2ea44f;
@@ -65,6 +67,13 @@
         .btn-pdf:hover {
             background-color: #2c974b;
         }
+        .btn-arxiv {
+            background-color: #b31b1b;
+            color: white;
+        }
+        .btn-arxiv:hover {
+            background-color: #8c1515;
+        }
         .btn-springer {
             background-color: #0366d6;
             color: white;
@@ -72,14 +81,45 @@
         .btn-springer:hover {
             background-color: #004c99;
         }
-        .abstract {
-            background: #ffffff;
-            padding: 20px;
-            border-left: 4px solid #0366d6;
-            border: 1px solid #e1e4e8;
-            border-left-width: 4px;
+        .abstract-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin: 20px 0;
+        }
+        .abstract-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-left: 4px solid #0366d6;
+            padding: 20px;
             border-radius: 0 6px 6px 0;
+        }
+        .abstract-card.extended {
+            border-left-color: #b31b1b;
+        }
+        .abstract-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .tag-short {
+            background: #e6f7ff;
+            color: #0066cc;
+            font-size: 0.75em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: normal;
+        }
+        .tag-extended {
+            background: #ffeef0;
+            color: #b31b1b;
+            font-size: 0.75em;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: normal;
         }
         pre {
             background: #272822;
@@ -113,23 +153,55 @@
         </div>
 
         <div class="actions">
-            <!-- Direct download link to accepted manuscript PDF -->
+            <!-- arXiv Extended Version Link -->
+            <a href="https://arxiv.org/abs/2605.26942" class="btn btn-arxiv" target="_blank" rel="noopener">
+                📄 Extended Preprint (22 pages / arXiv) ↗
+            </a>
+            <!-- Direct download link to short accepted PDF -->
             <a href="KI2026_Neuro_Symbolic_Verification_of_LLM_Outputs_for_Data_Sensitive_Domains.pdf" class="btn btn-pdf" download>
-                📄 Download Pre-print PDF
+                📥 Published Version PDF (8 pages)
             </a>
             <!-- Link to the publisher's version -->
             <a href="https://link.springer.com/chapter/10.1007/978-3-032-32335-4_30" class="btn btn-springer" target="_blank" rel="noopener">
-                🌐 Official Version on Springer ↗
+                🌐 Official Springer Version ↗
             </a>
         </div>
     </div>
 
-    <h2>Abstract</h2>
-    <div class="abstract">
-        LLMs deployed in high-stakes domains face fundamental reliability challenges: hallucinations and privacy vulnerabilities create unacceptable risks when errors carry legal, financial, or safety consequences. This paper presents a validated systems architecture that combines tableaux-based input verification, actor-based fault isolation, and type-aware post-generation verification, using deterministic symbolic checks for structured claims and neural semantic similarity for free-text claims. Validated through HAIMEDA, a locally deployed medical-device damage assessment system, the architecture detects 83% of hallucinated structured entities and 72% of semantic fabrications while reducing report creation time by 30%, demonstrating that neuro-symbolic architectures can provide principled safeguards for LLM deployment in data-sensitive domains.
+    <h2>Abstracts & Versions</h2>
+
+    <div class="abstract-container">
+        <!-- Extended arXiv Abstract -->
+        <div class="abstract-card extended">
+            <h3>Extended Preprint <span class="tag-extended">22 Pages • Full Details</span></h3>
+            <p>
+                LLMs deployed in high-stakes domains face fundamental reliability challenges: hallucinations, inconsistencies, and privacy vulnerabilities introduce unacceptable risks where errors carry legal, financial, or safety consequences. This paper presents a hybrid verification architecture combining formal symbolic methods with neural semantic analysis to provide complementary guarantees for LLM-generated content. This architecture employs logical reasoning for input verification, leveraging completeness properties to provide decidable guarantees on structured requirements. For output validation, embedding-based semantic similarity detects contextual hallucinations where formal methods lack expressiveness. This separation is realized in a parallel, actor-based pipeline, addressing limitations of prompt-based self-verification approaches, which inherit the distributional biases that produce hallucinations. The proposed architecture and type-aware verification method are validated with HAIMEDA, a real-world medical device damage assessment reporting system developed through Action Design Research. Evaluation shows hallucination detection rates of over 83% for structured entities and 72% for semantic fabrications, with a 30% reduction in report creation time, demonstrating that neuro-symbolic architectures can provide principled safeguards for LLM deployment in data-sensitive domains.
+            </p>
+        </div>
+
+        <!-- Published Conference Abstract -->
+        <div class="abstract-card">
+            <h3>Published Conference Version <span class="tag-short">8 Pages • KI 2026 Proceedings</span></h3>
+            <p>
+                LLMs deployed in high-stakes domains face fundamental reliability challenges: hallucinations and privacy vulnerabilities create unacceptable risks when errors carry legal, financial, or safety consequences. This paper presents a validated systems architecture that combines tableaux-based input verification, actor-based fault isolation, and type-aware post-generation verification, using deterministic symbolic checks for structured claims and neural semantic similarity for free-text claims. Validated through HAIMEDA, a locally deployed medical-device damage assessment system, the architecture detects 83% of hallucinated structured entities and 72% of semantic fabrications while reducing report creation time by 30%, demonstrating that neuro-symbolic architectures can provide principled safeguards for LLM deployment in data-sensitive domains.
+            </p>
+        </div>
     </div>
 
-    <h2>Citation</h2>
+    <h2>Citations</h2>
+    
+    <h3>Extended Preprint (arXiv)</h3>
+    <pre><code>@misc{sigloch2026neurosymbolicextended,
+  title={Neuro-Symbolic Verification of LLM Outputs for Data-Sensitive Domains (extended preprint)}, 
+  author={Paul Sigloch and Christoph Benzm{\"u}ller},
+  year={2026},
+  eprint={2605.26942},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  doi={10.48550/arXiv.2605.26942}
+}</code></pre>
+
+    <h3>Published Conference Version (Springer)</h3>
     <pre><code>@inproceedings{sigloch2026neurosymbolic,
   title={Neuro-Symbolic Verification of LLM Outputs for Data-Sensitive Domains},
   author={Sigloch, Paul and Benzm{\"u}ller, Christoph},
@@ -140,7 +212,7 @@
 }</code></pre>
 
     <div class="disclaimer">
-        * Note: The downloadable PDF is the author's accepted pre-print version. The definitive authenticated version is available on SpringerLink.
+        * Note: The arXiv preprint is the extended 22-page manuscript. The shorter conference proceedings version is published by Springer Nature.
     </div>
 
 </body>
